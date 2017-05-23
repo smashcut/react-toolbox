@@ -77,22 +77,22 @@
   --z-index-normal: 1;
   --z-index-low: -100;
   --z-index-lower: -200;
-}
 
-  :root --reset: {
+  --reset: {
     box-sizing: border-box;
     font-family: var(--preferred-font);
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
     text-size-adjust: 100%;
-  }
 
-  :root --reset: *,
-    :root --reset: *::after,
-    :root --reset: *::before {
+    & *,
+    & *::after,
+    & *::before {
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
       font-smoothing: antialiased;
       text-size-adjust: 100%;
       -webkit-touch-callout: none;
     }
+  }
+}
