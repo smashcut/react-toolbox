@@ -10,6 +10,7 @@ const factory = (FontIcon) => {
     static propTypes = {
       children: PropTypes.node,
       className: PropTypes.string,
+      counterTextFn: PropTypes.func,
       defaultValue: PropTypes.string,
       disabled: PropTypes.bool,
       error: PropTypes.oneOfType([
@@ -165,7 +166,7 @@ const factory = (FontIcon) => {
     )
 
     render() {
-      const { children, defaultValue, disabled, error, floating, hint, icon,
+      const { children, counterTextFn, defaultValue, disabled, error, floating, hint, icon,
               name, label: labelText, maxLength, multiline, required,
               theme, type, value, onKeyPress, rows = 1, ...others } = this.props;
       const length = maxLength && value ? value.length : 0;
@@ -193,6 +194,7 @@ const factory = (FontIcon) => {
         type,
         value,
       };
+
       if (!multiline) {
         inputElementProps.maxLength = maxLength;
         inputElementProps.onKeyPress = onKeyPress;
@@ -200,6 +202,8 @@ const factory = (FontIcon) => {
         inputElementProps.rows = rows;
         inputElementProps.onKeyPress = this.handleKeyPress;
       }
+
+      const counterText = counterTextFn ? counterTextFn(length, maxLength) : `${length}/${maxLength}`;
 
       return (
         <div data-react-toolbox="input" className={className}>
@@ -214,7 +218,7 @@ const factory = (FontIcon) => {
             : null}
           {hint ? <span hidden={labelText} className={theme.hint}>{hint}</span> : null}
           {error ? <span className={theme.error}>{error}</span> : null}
-          {maxLength ? <span className={theme.counter}>{length}/{maxLength}</span> : null}
+          {maxLength ? <span className={theme.counter}>{counterText}</span> : null}
           {children}
         </div>
       );
