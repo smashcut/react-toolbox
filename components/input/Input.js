@@ -33,6 +33,7 @@ const factory = (FontIcon) => {
       maxLength: PropTypes.number,
       multiline: PropTypes.bool,
       name: PropTypes.string,
+      id: PropTypes.string,
       onBlur: PropTypes.func,
       onChange: PropTypes.func,
       onFocus: PropTypes.func,
@@ -164,7 +165,7 @@ const factory = (FontIcon) => {
       const {
         children, defaultValue, disabled, error, floating, hint, icon,
         name, label: labelText, maxLength, multiline, required, role,
-        theme, type, value, onKeyPress, rows = 1, ...others
+        theme, type, value, id, onKeyPress, rows = 1, ...others
       } = this.props;
       const length = maxLength && value ? value.length : 0;
       const labelClassName = classnames(theme.label, { [theme.fixed]: !floating });
@@ -190,6 +191,7 @@ const factory = (FontIcon) => {
         required,
         type,
         value,
+        id: id || ''
       };
       if (!multiline) {
         inputElementProps.maxLength = maxLength;
@@ -206,7 +208,7 @@ const factory = (FontIcon) => {
           <span className={theme.bar} />
           {labelText
             ? (
-              <label className={labelClassName}>
+              <label className={labelClassName} htmlFor={id || ''}>
                 {labelText}
                 {required ? <span className={theme.required}> * </span> : null}
               </label>
