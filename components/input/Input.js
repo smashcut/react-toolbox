@@ -70,7 +70,6 @@ const factory = (FontIcon) => {
       floating: true,
       multiline: false,
       required: false,
-      role: 'input',
       type: 'text',
     };
 
@@ -191,7 +190,7 @@ const factory = (FontIcon) => {
         required,
         type,
         value,
-        id: id || ''
+        id
       };
       if (!multiline) {
         inputElementProps.maxLength = maxLength;
