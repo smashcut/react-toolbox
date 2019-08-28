@@ -92,6 +92,7 @@ class ProgressBar extends Component {
       <div
         disabled={disabled}
         data-react-toolbox="progress-bar"
+        role="progressbar"
         aria-valuenow={value}
         aria-valuemin={min}
         aria-valuemax={max}

@@ -135,6 +135,7 @@ const factory = (ripple, FontIcon) => {
           accept={accept}
           multiple={multiple}
           onChange={this.handleFileChange}
+          aria-label={label}
         />,
         children);
     }
